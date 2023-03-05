@@ -8,6 +8,21 @@ Yes, all three techniques can be used on the same dataset simultaneously. Howeve
 
 Write the Python code for an application that automates the processes of orchestrating sub-sampling, horizontal partitioning, and clustering of Big Data datasets and the associated metadata that is optimised for accuracy and consistency across all methods.
 
+# Data Reduction Automation Application
+
+This application automates the processes of orchestrating sub-sampling, horizontal partitioning, and clustering of Big Data datasets and the associated metadata that is optimised for accuracy and consistency across all methods. 
+
+The application is designed to reduce the amount of time and effort required to manually reduce large datasets, and improve the accuracy and consistency of the reduced data. 
+
+The application is written in Python and can be used on any dataset.
+
+Developers Note:
+
+This application can be used to automate the process of reducing large datasets for deep machine learning using language models. It is important to note that data reduction techniques such as sub-sampling, horizontal partitioning, and clustering can help to reduce the size of the dataset while still retaining the scope and context of the data. However, it is important to consider the trade-offs when deciding which technique to use. 
+
+We hope this application makes it easier for developers to reduce large datasets and improve the accuracy and consistency of their deep machine learning models.
+
+
 def automate_data_reduction(data, metadata):
     # Sub-sampling
     sub_sampled_data = random.sample(data, len(data) //2)
@@ -40,16 +55,3 @@ def automate_data_reduction(data, metadata):
 
 
 
-# Data Reduction Automation Application
-
-This application automates the processes of orchestrating sub-sampling, horizontal partitioning, and clustering of Big Data datasets and the associated metadata that is optimised for accuracy and consistency across all methods. 
-
-The application is designed to reduce the amount of time and effort required to manually reduce large datasets, and improve the accuracy and consistency of the reduced data. 
-
-The application is written in Python and can be used on any dataset.
-
-Developers Note:
-
-This application can be used to automate the process of reducing large datasets for deep machine learning using language models. It is important to note that data reduction techniques such as sub-sampling, horizontal partitioning, and clustering can help to reduce the size of the dataset while still retaining the scope and context of the data. However, it is important to consider the trade-offs when deciding which technique to use. 
-
-We hope this application makes it easier for developers to reduce large datasets and improve the accuracy and consistency of their deep machine learning models.

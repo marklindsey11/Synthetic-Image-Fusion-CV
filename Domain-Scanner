@@ -1,3 +1,11 @@
+#Mark Lindsey/Intelligence Clouds
+#New .RU-CENTER Domains English/New Scanner
+#GNU Licence Version 1.2
+#Python 3.8
+
+#README.txt: This script searches any TLD or other level domains for URLs that are newer than 50 days old and are publishr in with EN translation. This is a modular                subprocess of the source. It executes automatically by time stamp scheduling agent. 
+
+
 # Importing necessary libraries
 import requests
 import time

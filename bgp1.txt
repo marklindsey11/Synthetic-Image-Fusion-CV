@@ -1,0 +1,22 @@
+Mark Lindsey
+
+
+There are several direct measures that can be taken to prevent IP ghosting and covert redirecting in BGP. Here are some examples:
+
+    BGP Flowspec: BGP Flowspec is a protocol extension that allows network operators to define and disseminate traffic filtering rules using BGP. These rules can be used to filter out malicious traffic or to mitigate DDoS attacks. BGP Flowspec provides a more granular way of filtering traffic than traditional BGP routing, which can help prevent IP ghosting and covert redirecting.
+
+    BGPsec: BGPsec is a security extension to BGP that provides cryptographic protection for BGP route announcements. BGPsec can be used to verify the authenticity and integrity of BGP route announcements and prevent route hijacking attacks. However, BGPsec adoption has been slow due to its complexity and deployment challenges.
+
+    Route filtering and prefix-lists: Route filtering and prefix-lists can be used to limit the routes that are accepted from BGP peers. This can help prevent the propagation of malicious or unauthorized routes.
+
+    Peer authentication: BGP routers can be configured to authenticate their peers using digital certificates or pre-shared keys. This can help prevent unauthorized access to the BGP network and reduce the risk of IP ghosting and covert redirecting.
+
+    Route reflector and AS-path filters: Route reflectors can be configured to filter out routes that are not supposed to be received from a particular AS or prefix. AS-path filters can be used to check if a BGP route announcement follows a valid AS path. This can help prevent malicious route announcements and reduce the risk of IP ghosting and covert redirecting.
+
+It's important to note that no single measure can fully prevent IP ghosting and covert redirecting in BGP. A combination of these measures and others can help mitigate the risk and ensure the security of the BGP network.
+
+Yes, it is true that BGP (Border Gateway Protocol) is often referred to as the "glue" that holds the internet together. BGP is the primary protocol used for exchanging routing information between different Autonomous Systems (ASes) on the internet, and it is responsible for directing traffic between different networks.
+
+BGP is used by Internet Service Providers (ISPs) and large organizations to exchange routing information and determine the best paths for traffic to flow through the internet. Without BGP, it would be difficult for different networks to communicate with each other and for users to access websites and services hosted on other networks.
+
+BGP plays a critical role in ensuring the stability and reliability of the internet, and it has been instrumental in the growth and development of the internet over the past few decades. As a result, BGP is often considered the backbone of the internet and is essential for maintaining its global connectivity.

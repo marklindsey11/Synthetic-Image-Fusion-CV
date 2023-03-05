@@ -1,0 +1,80 @@
+
+#!/usr/bin/env python3
+
+# Import the necessary packages
+import requests
+import os
+import sys
+import subprocess
+
+# Define the application class
+class FusionHub:
+    def __init__(self):
+        # Set the list of OSINT tools
+        self.tools = ["Sherlock",
+                      "OSINT-SPY",
+                      "Maltego",
+                      "SpiderFoot",
+                      "Recon-ng",
+                      "theHarvester",
+                      "Open Source Intelligence Database (OSIDB)",
+                      "OSINT-Search",
+                      "OSINT-Tools"]
+
+    # Install the tools
+    def install_tools(self):
+        # Loop through the tools to install each one
+        for tool in self.tools:
+            # Check if the tool is installed
+            if not self._check_installed(tool):
+                # Install the tool
+                if self._install_tool(tool):
+                    # Output a message to the console
+                    print("Installed: " + tool)
+                else:
+                    # Output an error message to the console
+                    print("Failed to install: " + tool)
+            else:
+                # Output a message to the console
+                print("Already installed: " + tool)
+
+    # Check if the tool is installed
+    def _check_installed(self, tool):
+        # Execute the command to check if the tool is installed
+        cmd = "which " + tool
+        returncode, stdout, stderr = self._execute_command(cmd)
+        # Check the returncode
+        if returncode == 0:
+            # The tool is installed
+            return True
+        else:
+            # The tool is not installed
+            return False
+
+    # Install the tool
+    def _install_tool(self, tool):
+        # Execute the command to install the tool
+        cmd = "sudo apt-get install " + tool
+        returncode, stdout, stderr = self._execute_command(cmd)
+        # Check the returncode
+        if returncode == 0:
+            # The tool was installed successfully
+            return True
+        else:
+            # There was an error installing the tool
+            return False
+
+    # Execute a command
+    def _execute_command(self, cmd):
+        # Execute the command
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+        # Get the output
+        stdout, stderr = proc.communicate()
+        # Return the output
+        return proc.returncode, stdout, stderr
+
+# Create an instance of the application
+fusion_hub = FusionHub()
+
+# Install the tools
+fusion_hub.install_tools()

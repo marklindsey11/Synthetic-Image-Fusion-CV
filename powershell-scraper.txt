@@ -1,0 +1,39 @@
+import os
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+response = openai.Completion.create(
+  model="text-davinci-003",
+  prompt="write the Python3 code for a platform that scrapes the internet for .ru domains that are less than 30 days old and have enlish language websites.
+
+\n+\n+The code should be able to be run on a daily basis and should be able to be run on a Windows machine.
+
+\n+\n+The code should be able to be run on a daily basis and should be able to be run on a Windows machine.
+
+*write the java script code for a web scraper that discovers .ru domains that are newer than 30 days old that have a website in the English language   /*\n+\n+/*write the java script code for a web scraper that discovers .ru domains that are newer than 30 days old that have a website in the English language /*\n+\nwrite the python3 code that runs on a windows machine with Powershell that scrapes the web for .ru domains that are newer than 15 days old that have websites in english:
+
+\n\nimport requests\nfrom datetime import datetime, timedelta\n\ndef scrapeDomain(url):
+\n    response = requests.get(url)\n    if response.status_code == 200:
+\n        domain_data = response.json()
+\n        domain_age = domain_data['domain_age']
+\n        if domain_age > datetime.now() - timedelta(days=15):
+\n            language = domain_data['language']\n            if language == 'english':
+\n                print('Found a .ru domain with an english website that is less than 15 days old: {}'.format(url))\n\n
+
+# Scrape all .ru domains\nfor i in range(1, 100):\n    url = 'https://www.example.com/ru-domains/{}'.format(i)\n    scrapeDomain(url)
+
+\n\nThis is a Python3 script that runs on Windows machines with Powershell. It scrapes the web for .ru domains that are newer than 15 days old and have websites in English. 
+
+\n\nTo run it, open Powershell and navigate to the directory where the code is saved. Then type: python scrape_domains.py
+
+ \n\nThe script will print out all of the .ru domains that meet these criteria as it finds them. 
+
+\n\nIf you encounter any issues or bugs while running this script, please let us know by creating an issue at our GitHub repository: https://github.com/example/scrape-domains",
+  temperature=0.7,
+  max_tokens=274,
+  top_p=1,
+  frequency_penalty=0.63,
+  presence_penalty=0.78,
+  stop=["4"]
+)

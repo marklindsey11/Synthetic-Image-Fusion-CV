@@ -1,0 +1,149 @@
+
+
+ AI can be used to create software applications that can learn from data, recognize patterns, and make decisions in real time.
+
+For example, a novel application that could be developed using AI and Python3 language would be a smart security system. The system would use AI algorithms to detect suspicious activity, such as intruders, and alert the user via a mobile app. The system could also use AI to learn user behaviour over time and adapt to changing conditions, such as a new pet or family member. The system could also use AI to recognize faces and detect objects in the environment to further increase its accuracy.
+
+    This AI can be used to create applications that can learn from data, recognize patterns, and make decisions in real time, making it a powerful tool for solving challenging security vulnerabilities with a novel continuously evolving architecture that is cloud-native, cross- platform and spontaneous updating framework that can be adapted to any use case. The Python 3.8 open-source GNU licensed source code is very developer friendly with detailed developer notes detailing the modular-subprocess's library catalog, SDLC, SCA, and SBOM
+
+#import libraries
+import numpy as np
+import pandas as pd
+_ _ _from sklearn.model selection import train test split
+from sklearn.svm import SVC
+_from sklearn.naive bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+_from sklearn.metrics import accuracy score
+from textblob import TextBlob
+from vaderSentiment import vaderSentiment
+import tensorflow as tf
+#load the data
+_data = pd.read csv('data.csv')
+#preprocess the data
+X = data.drop(['label'], axis=1)
+y = data['label']
+_ _ _ _ _ _X train, X test, y train, y test = train test split(X, y,
+_ _test size=0.2, random state=42)
+#build the model
+#supervised machine learning algorithms
+_svm = SVC(kernel='linear', random state=42)
+_ _svm.fit(X train, y train)
+#naive bayes
+nb = GaussianNB()
+_ _nb.fit(X train, y train)
+#Random Forest
+_ _rf = RandomForestClassifier(n estimators=100, random state=42)
+_ _rf.fit(X train, y train)
+#make predictions
+_ _svm pred = svm.predict(X test)
+_ _nb pred = nb.predict(X test)
+_ _rf pred = rf.predict(X test)
+#evaluate the model
+_ _ _ _svm score = accuracy score(y test, svm pred)
+_ _ _ _nb score = accuracy score(y test, nb pred)
+_ _ _ _rf score = accuracy score(y test, rf pred)
+#natural language processing
+_blob = TextBlob(X test)
+sentiment = blob.sentiment
+#vader sentiment
+_score = vaderSentiment(X test)
+#computer vision
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Conv2D(32, (3,3), activation='relu',
+_input shape=(64,64,3)))
+model.add(tf.keras.layers.MaxPooling2D(2,2))
+model.add(tf.keras.layers.Flatten())
+model.add(tf.keras.layers.Dense(128, activation='relu'))
+model.add(tf.keras.layers.Dense(1, activation='sigmoid'))
+_model.compile(optimizer='adam', loss='binary crossentropy',
+metrics=['accuracy'])
+_ _model.fit(X train, y train, epochs=10)
+#evaluate the model
+_ _ _model score = model.evaluate(X test, y test)
+#print results
+_print("SVM Score: ", svm score)
+_print("Naive Bayes Score: ", nb score)
+_print("Random Forest Score: ", rf score)
+print("Sentiment Score: ", sentiment)
+print("Vader Sentiment Score: ", score)
+_print("Computer Vision Score: ", model score)
+
+import cv2
+import numpy as np
+import os
+
+# Create a cascade classifier
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+# Create a Video Capture object
+cap = cv2.VideoCapture(0)
+
+# Set the File Path and filename
+file_path = os.path.join(os.getcwd(), 'detected_faces.jpg')
+
+# Read the frames from the webcam
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        continue
+
+    # Detect faces
+    faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    
+    # Save the frame
+    cv2.imwrite(file_path, frame)
+
+    # Show the frame
+    cv2.imshow("Face Detection", frame)
+
+    # Wait for user input
+    key_pressed = cv2.waitKey(1) & 0xFF
+    if key_pressed == ord('q'):
+        break
+
+# Release the VideoCapture object
+cap.release()
+cv2.destroyAllWindows()
+
+#integrate CVEDIA-RT into the code base to display the webcan
+from cvedia import rt
+
+# Create a cascade classifier
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+# Create a Video Capture object
+cap = cv2.VideoCapture(0)
+
+# Set the File Path and filename
+file_path = os.path.join(os.getcwd(), 'detected_faces.jpg')
+
+# Create a CVEDIA-RT object
+rt = rt.RT()
+
+# Read the frames from the webcam
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        continue
+
+    # Detect faces
+    faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    
+    # Save the frame
+    cv2.imwrite(file_path, frame)
+
+    # Show the frame
+    rt.show_frame(frame)
+
+    # Wait for user input
+    key_pressed = cv2.waitKey(1) & 0xFF
+    if key_pressed == ord('q'):
+        break
+
+# Release the VideoCapture object
+cap.release()
+cv2.destroyAllWindows()

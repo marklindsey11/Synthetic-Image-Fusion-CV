@@ -1,0 +1,173 @@
+
+#!/usr/bin/env python3
+
+import os
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+
+response = openai.Completion.create(
+  model="text-davinci-003",
+  prompt="write a root access, system-level Python 3 script for a Windows 10 Pro WSL2 subsystem for Linux that searches and reads, directly from memory, directories and subdirectories containing nested files without manifest's, that detects specific content in memory searching for specific patterns and values and logs any matches and can modify values. Include a Python subprocess  module that can execute any command line utility like \"grep\" or \"find\", without the risk of executing maliscious scripts.\n\n#!/usr/bin/python3\n\nimport os, sys\nimport subprocess\n\n# Get the current working directory\ncwd = os.getcwd()\n\n# Get the list of all files in the current working directory\nfiles = os.listdir(cwd)\n\n# Loop through the files\nfor file in files:\n\t\n\t# Check if the file is a directory\n\tif os.path.isdir(file):\n\t\t\n\t\t# Get the list of files in the directory\n\t\tsubfiles = os.listdir(os.path.join(cwd, file))\n\t\t\n\t\t# Loop through the files in the directory\n\t\tfor subfile in subfiles:\n\t\t\t\n\t\t\t# Check if the file is a directory\n\t\t\tif os.path.isdir(os.path.join(cwd, file, subfile)):\n\t\t\t\t\n\t\t\t\t# Get the list of files in the subdirectory\n\t\t\t\tsubsubfiles = os.listdir(os.path.join(cwd, file, subfile))\n\t\t\t\t\n\t\t\t\t# Loop through the files in the subdirectory\n\t\t\t\tfor subsubfile in subsubfiles:\n\t\t\t\t\t\n\t\t\t\t\t# Read the contents of the file in memory\n\t\t\t\t\twith open(os.path.join(cwd, file, subfile, subsubfile), 'rb') as f:\n\t\t\t\t\t\tcontents = f.read()\n\t\t\t\t\t\n\t\t\t\t\t# Search for specific patterns and values\n\t\t\t\t\tif b'pattern1' in contents:\n\t\t\t\t\t\t# Log any matches\n\t\t\t\t\t\tprint('Found pattern1 in file %s' % subsubfile)\n\t\t\t\t\t\n\t\t\t\t\t# Search for specific values\n\t\t\t\t\tif b'value1' in contents:\n\t\t\t\t\t\t# Modify values\n\t\t\t\t\t\tcontents = contents.replace(b'value1', b'value2')\n\t\t\t\t\t\t\n\t\t\t\t\t\t# Write the modified contents to the file\n\t\t\t\t\t\twith open(os.path.join(cwd, file, subfile, subsubfile), 'wb') as f:\n\t\t\t\t\t\t\tf.write(contents)\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t# Log the modification\n\t\t\t\t\t\tprint('Replaced value1 with value2 in file %s' % subsubfile)\n\t\t\t\t\t\n\t\t\t\t\t# Use the subprocess module to execute any command line utility\n\t\t\t\t\tsubprocess.call(['grep', 'pattern2', os.path.join(cwd, file, subfile, subsubfile)])\n\t\t\t\t\tsubprocess.call(['find', 'value3', os.path.join(cwd, file, subfile, subsubfile)])",
+  temperature=0.7,
+  max_tokens=256,
+  top_p=1,
+  frequency_penalty=0,
+  presence_penalty=0
+)
+import sys
+import subprocess
+import re
+
+# Set command line arguments
+args = sys.argv
+
+# Check command line arguments
+if len(args) < 3:
+    sys.exit("Error: Not enough arguments provided.")
+
+# Set values from command line arguments
+search_string = args[1]
+search_path = args[2]
+
+# Create subprocess command
+cmd = "find %s -type f -print0 | xargs -0 -I {} grep -H -E '%s' {}" % (search_path, search_string)
+
+# Execute subprocess command
+grep_results = subprocess.check_output(cmd, shell=True).decode("utf-8")
+
+# Parse grep results
+for line in grep_results.split("\n"):
+    if line:
+        path, content = line.split(":")
+        match = re.search(search_string, content)
+
+        # Log any matches found
+        if match:
+            print("Match '%s' found in %s" % (match)
+
+
+import os
+import subprocess
+
+# Recursive search of directories and subdirectories, looking for files without any manifest
+for root, dirs, files in os.walk("/"):
+    for file in files:
+        if not file.endswith(".manifest"):
+            # Open the file and read the contents
+            with open(os.path.join(root, file)) as f:
+                content = f.read()
+                
+                # Search for specific patterns and values
+                matches = [x for x in content.split("\n") if x.startswith("pattern") or x.startswith("value")]
+                
+                # Log any matches
+                if len(matches) > 0:
+                    print("Found match in %s with content %s" % (file, matches))
+                    
+                    # Modify any matching values
+                    for match in matches:
+                        if match.startswith("value"):
+                            modified = match.replace("value", "modified value")
+                            output = subprocess.run(["sed", "-i",})
+
+# Path to search
+path = sys.argv[1]
+
+# Pattern or value to search for
+search_pattern = sys.argv[2]
+
+# Log File
+log_file = sys.argv[3]
+
+# Open the log file
+log = open(log_file, 'w+')
+
+# Walk through the directory tree
+for root, dirs, files in os.walk(path):
+    for file in files:
+        # Open the file
+        f = open(os.path.join(root, file), 'r')
+        # Read the content
+        content = f.read()
+        # Search for the pattern
+        if search_pattern in content:
+            # Log the match
+            log.write("MATCH: {0}\n".format(os.path.join(root, file)))
+            # Execute the command line utility to modify the value
+            subprocess.call(['grep', '-i', search_pattern, os.path.join(root, file)],
+
+
+# Define the search pattern and value
+SEARCH_PATTERN = "pattern"
+SEARCH_VALUE = "value"
+
+# Set the root directory to start searching
+ROOT_DIR = "/home/user/test"
+
+# Create an empty list for storing output
+matches = []
+
+# Walk the directory tree
+for root, dirs, files in os.walk(ROOT_DIR):
+    # Search all files in the subdirectories
+    for file in glob.glob(os.path.join(root, '*')):
+        # Use subprocess to execute the "grep" command
+        p = subprocess.Popen(['grep', SEARCH_PATTERN, file], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        # Store the output
+        out, err = p.communicate()
+        # Search the output for the given value
+        if SEARCH_VALUE in out.decode('utf-8'):
+            # If found, store
+
+# Get the current working directory
+cwd = os.getcwd()
+
+# Get the list of all files in the current working directory
+files = os.listdir(cwd)
+
+# Loop through the files
+for file in files:
+	
+	# Check if the file is a directory
+	if os.path.isdir(file):
+		
+		# Get the list of files in the directory
+		subfiles = os.listdir(os.path.join(cwd, file))
+		
+		# Loop through the files in the directory
+		for subfile in subfiles:
+			
+			# Check if the file is a directory
+			if os.path.isdir(os.path.join(cwd, file, subfile)):
+				
+				# Get the list of files in the subdirectory
+				subsubfiles = os.listdir(os.path.join(cwd, file, subfile))
+				
+				# Loop through the files in the subdirectory
+				for subsubfile in subsubfiles:
+					
+					# Read the contents of the file in memory
+					with open(os.path.join(cwd, file, subfile, subsubfile), 'rb') as f:
+						contents = f.read()
+					
+					# Search for specific patterns and values
+					if b'pattern1' in contents:
+						# Log any matches
+						print('Found pattern1 in file %s' % subsubfile)
+					
+					# Search for specific values
+					if b'value1' in contents:
+						# Modify values
+						contents = contents.replace(b'value1', b'value2')
+						
+						# Write the modified contents to the file
+						with open(os.path.join(cwd, file, subfile, subsubfile), 'wb') as f:
+							f.write(contents)
+							
+						# Log the modification
+						print('Replaced value1 with value2 in file %s' % subsubfile)
+					
+					# Use the subprocess module to execute any command line utility
+					subprocess.call(['grep', 'pattern2', os.path.join(cwd, file, subfile, subsubfile)])
+					subprocess.call(['find', 'value3', os.path.join(cwd, file, subfile, subsubfile)])

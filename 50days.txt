@@ -1,0 +1,55 @@
+# Importing necessary libraries
+import requests
+import time
+import datetime
+import re
+
+# URL for the Russian domain 
+url = "https://www.nic.ru/dns/en/registered/russia.html"
+
+# Setting the timeout period for the request
+timeout = 10
+
+# Setting the current timestamp for the start of the search
+start_timestamp = int(time.time())
+
+# Setting the time in the past for the end of the search
+end_timestamp = start_timestamp - (50 * 24 * 60 * 60)
+
+# Making a request to the Russian domain
+try:
+    response = requests.get(url, timeout=timeout)
+except requests.exceptions.Timeout:
+    print("Request timed out.")
+
+# Checking the response status code
+if response.status_code != 200:
+    print("Request failed.")
+
+# Extracting the HTML content
+html = response.content
+
+# Parsing the HTML content
+soup = BeautifulSoup(html, 'html.parser')
+
+# Extracting the links to the websites
+links = soup.find_all('a')
+
+# Iterating over the links to check for the criteria
+for link in links:
+
+    # Getting the URL of the link
+    url = link['href']
+
+    # Checking for the criteria
+    if (re.search(r"\/english\/", url) is not None and
+        re.search(r"\/fundraising\/", url) is not None):
+
+        # Getting the timestamp from the URL
+        timestamp = int(url.split('-')[-1])
+        
+        # Checking if the timestamp is within the range
+        if (timestamp >= end_timestamp and timestamp <= start_timestamp):
+
+            # Printing the URL
+            print(url).

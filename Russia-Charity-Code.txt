@@ -1,0 +1,35 @@
+
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+
+# Get the current date
+now = datetime.now()
+
+# Set the limit date to 60 days from current date
+limit_date = now - timedelta(days=60)
+
+# Set the page to search
+url = "https://www.google.com/search?q=charity+fundraising+site+russia+language%3AEnglish"
+
+# Request the HTML page
+r = requests.get(url)
+
+# Parse the HTML page
+soup = BeautifulSoup(r.content, "html.parser")
+
+# Get the results
+results = soup.find_all("div", class_="g")
+
+# Loop through results
+for result in results:
+    # Get the link to the website
+    link = result.find("a", href=True)["href"]
+
+    # Get the date the website was created
+    date_string = result.find("span", class_="f").text
+    date = datetime.strptime(date_string, "%d %b %Y")
+    
+    # Check if the website is less than 60 days old
+    if date > limit_date:
+        print(link)
